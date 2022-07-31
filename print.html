@@ -1,0 +1,814 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>My Notebook</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Articles</li><li class="chapter-item expanded "><a href="Procedural Dungeon Generation Algorithm.html"><strong aria-hidden="true">1.</strong> Procedural Dungeon Generation Algorithm</a></li><li class="chapter-item expanded "><a href="A Technique for Animating a Unity UI Layout Group.html"><strong aria-hidden="true">2.</strong> A Technique for Animating a Unity UI Layout Group</a></li><li class="chapter-item expanded "><a href="stress-free_gdc.html"><strong aria-hidden="true">3.</strong> Stress-Free Game Development: Powering Up Your Studio With DevOps</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ABOUT.html">About Me</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">My Notebook</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="hello-world"><a class="header" href="#hello-world">Hello World</a></h1>
+<p>This notebook will serve as a backup of the things I have found interesting, as well as some notes of my own.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="procedural-dungeon-generation-algorithm"><a class="header" href="#procedural-dungeon-generation-algorithm"><a href="https://web.archive.org/web/20220320015843/https://www.gamedeveloper.com/programming/procedural-dungeon-generation-algorithm">Procedural Dungeon Generation Algorithm</a></a></h1>
+<p><a href="https://www.gamedeveloper.com/author/a-adonaac">Written by A Adonaac</a></p>
+<p>This post explains a technique for generating randomized dungeons that was first described by <a href="http://store.steampowered.com/app/278620/">TinyKeepDev</a> <a href="https://www.reddit.com/r/gamedev/comments/1dlwc4/procedural_dungeon_generation_algorithm_explained/">here</a>. I'll go over it in a little more detail than the steps in the original post. The general way the algorithm works is this:</p>
+<p><img src="http://i.imgur.com/wM30Xyl.gif" alt="" /></p>
+<h2 id="generate-rooms"><a class="header" href="#generate-rooms">Generate Rooms</a></h2>
+<p>First you wanna generate some rooms with some width and height that are placed randomly inside a circle. TKdev's algorithm used the normal distribution for generating room sizes and I think that this is generally a good idea as it gives you more parameters to play with. Picking different ratios between width/height mean and standard deviation will generally result in different looking dungeons.</p>
+<p>One function you might need to do this is <em>getRandomPointInCircle</em>:</p>
+<pre><code>function getRandomPointInCircle(radius)
+  local t = 2*math.pi*math.random()
+  local u = math.random()+math.random()
+  local r = nil
+  if u &gt; 1 then r = 2-u else r = u end
+  return radius*r*math.cos(t), radius*r*math.sin(t)
+end
+</code></pre>
+<p>You can get more info on how that works exactly <a href="http://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly">here</a>. And after that you should be able to do something like this:</p>
+<p><img src="http://i.imgur.com/9TsZluP.gif" alt="" /></p>
+<p>One very important thing that you have to consider is that since you're (at least conceptually) dealing with a grid of tiles you have to snap everything to that same grid. In the gif above the tile size is 4 pixels, meaning that all room positions and sizes are multiples of 4. To do this I wrap position and width/height assignments in a function that rounds the number to the tile size:</p>
+<pre><code>function roundm(n, m) return math.floor(((n + m - 1)/m))*m end
+</code></pre>
+<h2 id="separate-rooms"><a class="header" href="#separate-rooms">Separate Rooms</a></h2>
+<p>Now we can move on to the separation part. There's a lot of rooms mashed together in one place and they should not be overlapping somehow. TKdev used the separation steering behavior to do this but I found that it's much easier to just use a physics engine. After you've added all rooms, simply add solid physics bodies to match each room's position and then just run the simulation until all bodies go back to sleep. In the gif I'm running the simulation normally but when you're doing this between levels you can advance the physics simulation faster.</p>
+<p><img src="http://i.imgur.com/Zv2kYmv.gif" alt="" /></p>
+<p>The physics bodies themselves are not tied to the tile grid in any way, but when setting the room's position you wrap it with the <em>roundm</em> call and then you get rooms that are not overlapping with each other and that also respect the tile grid. The gif below shows this in action as the blue outlines are the physics bodies and there's always a slight mismatch between them and the rooms since their position is always being rounded:</p>
+<p><img src="http://i.imgur.com/eyTNcXE.gif" alt="" /></p>
+<p>One issue that might come up is when you want to have rooms that are skewed horizontally or vertically. For instance, consider the game I'm working on:</p>
+<p><img src="https://i.imgur.com/COnbUTF.gif" alt="" /></p>
+<p>Combat is very horizontally oriented and so I probably want to have most rooms being bigger in width than they are in height. The problem with this lies in how the physics engine decides to resolve its collisions whenever long rooms are near each other:</p>
+<p><img src="http://i.imgur.com/VbvngEZ.gif" alt="" /></p>
+<p>As you can see, the dungeon becomes very tall, which is not ideal. To fix this we can spawn rooms initially inside a thin strip instead of on a circle. This ensures that the dungeon itself will have a decent width to height ratio:</p>
+<p><img src="http://i.imgur.com/yMEwhwr.gif" alt="" /></p>
+<p>To spawn randomly inside this strip we can just change the `getRandomPointInCircle` function to spawn points inside an ellipse instead (in the gif above I used <em>ellipse_width = 400</em> and <em>ellipse_height = 20</em>):</p>
+<pre><code>function getRandomPointInEllipse(ellipse_width, ellipse_height)
+  local t = 2*math.pi*math.random()
+  local u = math.random()+math.random()
+  local r = nil
+  if u &gt; 1 then r = 2-u else r = u end
+  return roundm(ellipse_width*r*math.cos(t)/2, tile_size), 
+         roundm(ellipse_height*r*math.sin(t)/2, tile_size)
+end
+</code></pre>
+<h2 id="main-rooms"><a class="header" href="#main-rooms">Main Rooms</a></h2>
+<p>The next step simply determines which rooms are main/hub rooms and which ones aren't. TKdev's approach here is pretty solid: just pick rooms that are above some width/height threshold. For the gif below the threshold I used was <em>1.25*mean</em>, meaning, if <em>width_mean</em> and <em>height_mean</em> are 24 then rooms with width and height bigger than 30 will be selected.</p>
+<p><img src="http://i.imgur.com/yeqXkTe.gif" alt="" /></p>
+<h2 id="delaunay-triangulation--graph"><a class="header" href="#delaunay-triangulation--graph">Delaunay Triangulation + Graph</a></h2>
+<p>Now we take all the midpoints of the selected rooms and feed that into the Delaunay procedure. You either implement this procedure yourself or find someone else who's done it and shared the source. In my case I got lucky and <a href="https://github.com/Yonaba/delaunay">Yonaba already implemented it</a>. As you can see from that interface, it takes in points and spits out triangles:</p>
+<p><img src="http://i.imgur.com/BUeRTaW.gif" alt="" /></p>
+<p>After you have the triangles you can then generate a graph. This procedure should be fairly simple provided you have a graph data structure/library at hand. In case you weren't doing this already, it's useful that your Room objects/structures have unique ids to them so that you can add those ids to the graph instead of having to copy them around.</p>
+<h2 id="minimum-spanning-tree"><a class="header" href="#minimum-spanning-tree">Minimum Spanning Tree</a></h2>
+<p>After this we generate a minimum spanning tree from the graph. Again, either implement this yourself or find someone who's done it in your language of choice.</p>
+<p><img src="http://i.imgur.com/gc77fqU.gif" alt="" /></p>
+<p>The minimum spanning tree will ensure that all main rooms in the dungeon are reachable but also will make it so that they're not all connected as before. This is useful because by default we usually don't want a super connected dungeon but we also don't want unreachable islands. However, we also usually don't want a dungeon that only has one linear path, so what we do now is add a few edges back from the Delaunay graph:</p>
+<p><img src="http://i.imgur.com/Spogz4z.gif" alt="" /></p>
+<p>This will add a few more paths and loops and will make the dungeon more interesting. TKdev arrived at 15% of edges being added back and I found that around 8-10% was a better value. This may vary depending on how connected you want the dungeon to be in the end.</p>
+<h2 id="hallways"><a class="header" href="#hallways">Hallways</a></h2>
+<p>For the final part we want to add hallways to the dungeon. To do this we go through each node in the graph and then for each other node that connects to it we create lines between them. If the nodes are horizontally close enough (their <em>y</em> position is similar) then we create a horizontal line. If the nodes are vertically close enough then we create a vertical line. If the nodes are not close together either horizontally or vertically then we create 2 lines forming an L shape. </p>
+<p>The test that I used for what ~close enough~ means calculates the midpoint between both nodes' positions and checks to see if that midpoint's <em>x or y</em> attributes are inside the node's boundaries. If they are then I create the line from that midpoint's position. If they aren't then I create two lines, both going from the source's midpoint to the target's midpoint but only in one axis.</p>
+<p><img src="http://i.imgur.com/iKR57gS.png" alt="" /></p>
+<p>In the picture above you can see examples of all cases. Nodes 62 and 47 have a horizontal line between them, nodes 60 and 125 have a vertical one and nodes 118 and 119 have an L shape. It's also important to note that those aren't the only lines I'm creating. They are the only ones I'm drawing but I'm also creating 2 additional lines to the side of each one spaced by <em>tile_size</em>, since I want my corridors to be at least 3 tiles wide in either width or height.</p>
+<p>Anyway, after this we check to see which rooms that aren't main/hub rooms that collide with each of the lines. Colliding rooms are then added to whatever structure you're using to hold all this by now and they will serve as the skeleton for the hallways:</p>
+<p><img src="http://i.imgur.com/Y7E7Egn.png" alt="" /></p>
+<p>Depending on the uniformity and size of the rooms that you initially set you'll get different looking dungeons here. If you want your hallways to be more uniform and less weird looking then you should aim for low standard deviation and you should put some checks in place to keep rooms from being too skinny one way or the other.</p>
+<p>For the last step we simply add 1 tile sized grid cells to make up the missing parts. Note that you don't actually need a grid data structure or anything too fancy, you can just go through each line according to the tile size and add grid rounded positions (that will correspond to a 1 tile sized cell) to some list. This is where having 3 (or more) lines happening instead of only 1 matters.</p>
+<p><img src="http://i.imgur.com/bSV1gpV.png" alt="" /></p>
+<p><img src="http://i.imgur.com/t4G5oRK.gif" alt="" /></p>
+<p>And then after this we're done!</p>
+<h2 id="end"><a class="header" href="#end">END</a></h2>
+<p>The data structures I returned from this entire procedure were: a list of rooms (each room is just a structure with a unique id, x/y positions and width/height); the graph, where each node points to a room id and the edges have the distance between rooms in tiles; and then an actual 2D grid, where each cell can be nothing (meaning its empty), can point to a main/hub room, can point to a hallway room or can be hallway cell. With these 3 structures I think it's possible to get any type of data you could want out of the layout and then you can figure out where to place doors, enemies, items, which rooms should have bosses, and so on.</p>
+<p><img src="http://i.imgur.com/GKO8EUG.gif" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="a-technique-for-animating-a-unity-ui-layout-group"><a class="header" href="#a-technique-for-animating-a-unity-ui-layout-group"><a href="https://straypixels.net/layoutgroup-animation/">A Technique for Animating a Unity UI Layout Group</a></a></h1>
+<p><a href="https://straypixels.net/assets/layoutgroup-animation/objectives_animation_2.webm">There's supposed to be a video here, but your browser doesn't support the video tag!</a></p>
+<p>Imagine the following scenario: you have a list of objectives you want to show in the game HUD. Sounds simple enough to implement in Unity’s built-in UI system, right? Just throw a <code>HorizontalLayoutGroup</code> on a panel, insert your elements, and the panel will automatically size to fit. Instantiate new children as new objectives come in.</p>
+<p>However, when you add new objectives, it doesn’t look especially nice to have the UI expand immediately. Plus, you want to draw the player’s attention to the objectives list when it is updated. So, you decide to animate the objectives list.</p>
+<p>Using Unity’s built-in UI components, this turns out to be a bit difficult to do. There is no built-in support for animation in the UI system. How, then, do we go about animating this list?</p>
+<p>One way to do it is to simply throw away Unity’s layout engine altogether, and only use their components for display/events. This is a perfectly valid way to go about it, and in fact is necessary if you want more control over how the animation is done. However, one of my main goals was to leverage Unity’s layout engine somehow.</p>
+<p>Another way is to follow <a href="https://answers.unity.com/questions/1156668/is-there-a-way-to-animate-dynamic-layout-group-cha.html">the technique laid out in this answer</a>. In summary, they create a hidden hierarchy for layout, and the “real” UI interpolates to the match the size of the hidden hierarchy over time. This sounds like a reasonable approach, but seems a little clunky to me in terms of setup.</p>
+<p>Where, then, does that leave us?</p>
+<ul>
+<li>We want to insert elements directly into the <code>LayoutGroup</code>, and for those elements to begin at no size.</li>
+<li>But we still want Unity to tell us what size those elements <em>should</em> be, when they’re at full size.</li>
+</ul>
+<p>There are a few tricks I used to pull this off. Most of it is contained within the way I’ve organized the hierarchy:</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/Hierarchy.png" alt="Unity hierarchy. ObjectivesContainer contains Header and SingleObjectiveContainer. SingleObjectiveContainer contains ObjectiveText." /></p>
+<p>The parent, the <code>ObjectivesContainer</code>, has a <code>VerticalLayoutGroup</code>, along with a <code>ContentSizeFitter</code> so that it always snugly fits its children:</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/ObjectivesContainerInspector.png" alt="ObjectivesContainer inspector." /></p>
+<p>In a traditional <code>VerticalLayoutGroup</code> setup, we’d put the row content directly under <code>ObjectivesContainer</code>. However, you might have noticed that <code>ObjectiveText</code> is not in <code>ObjectivesContainer</code>; instead, it’s been placed under <code>SingleObjectiveContainer</code>. Here’s the inspector for <code>SingleObjectiveContainer</code> (on the left) and <code>ObjectiveText</code> (on the right):</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/InspectorsSideBySide.png" alt="Two inspectors side by side." /></p>
+<p>The important thing here is that the SingleObjectiveContainer has a <code>LayoutElement</code> component. This allows us to shrink the row without affecting the size of the content inside of the row, by modifying the <code>preferredWidth</code> and <code>preferredHeight</code> properties.</p>
+<p>You might also note that there is a <code>ContentSizeFitter</code> on the content element, with both “Horizontal Fit” and “Vertical Fit” to “Preferred Size”. We could not do this without the container element, as Unity’s layout system must control the size of its direct children. We’ll discuss what we use this for later.</p>
+<p>One last thing to call your attention to: the anchor of the <code>ObjectiveText</code> is set to the bottom-left. This is done so our text sticks to the bottom-side of the container, so that when we animate, the text appears to drop downwards. (Try playing around with the anchor after the effect is finished and you’ll see what I mean.)</p>
+<p>With this configuration, we can now modify the values on the <code>SingleObjectiveContainer</code>’s <code>LayoutGroup</code> and have the <code>ObjectivesContainer</code> follow:</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/HeightSettingNoMask.gif" alt="Me adjusting the preferred height of the LayoutElement." /></p>
+<p>Obviously, row content showing behind other elements is undesirable. We can solve this by adding an Image component and a Mask component to the container. Make sure to uncheck “Show Mask Graphic”; the <code>Image</code> component is only there to define the mask boundaries, and shouldn’t be drawn.</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/MaskInspector.png" alt="A mask component with an Image component." /></p>
+<p>With the mask, only the portion text that fits within the container is shown:</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/HeightSettingWithMask.gif" alt="Me adjusting the preferred height of the LayoutElement after the mask is applied." /></p>
+<p>We now have all the tools we need to do the animation. For the insertion animation, we’ll animate the container from (0,0) to the size of the size of the inner content’s <code>RectTransform</code>. Since the content’s <code>RectTransform</code> is being controlled by a <code>ContentSizeFitter</code>, that means we’ll animate to the exact size needed to fit the inner content snugly.</p>
+<p>Note that the <code>ContentSizeFitter</code> isn’t special; you could set the width and height of the content in other ways, such as by using an <code>AspectRatioFitter</code>, and this technique will work just as well. The important part is simply that we’re using the inner content’s size as the animation target, so it should be set to something reasonable.</p>
+<p>I’ve done the animation using a <code>Coroutine</code> in code (though I’m sure there’s better ways to do it):</p>
+<pre><code class="language-cs">IEnumerator ShowSelf(float duration)
+{
+    float startHeight = rectTransform.rect.height;
+    float endHeight = text.rectTransform.rect.height;
+    float startWidth = rectTransform.rect.width;
+    float endWidth = text.rectTransform.rect.width;
+
+    float time = 0.0f;
+    while (time &lt; duration)
+    {
+        // Adding easing to the animation makes the animation much more fluid, compared to
+        // a standard linear interpolation; see the repository below for the implementation
+        layoutElement.preferredHeight = Util.EaseInOut(startHeight, endHeight, time, duration);
+        layoutElement.preferredWidth = Util.EaseInOut(startWidth, endWidth, time, duration);
+
+        yield return null;
+        time += Time.deltaTime;
+    }
+
+    layoutElement.preferredHeight = endHeight;
+    layoutElement.preferredWidth = endWidth;
+}
+</code></pre>
+<p>A hiding animation is similar - all you need to do is reverse the <code>start</code> and <code>end</code> parameters.</p>
+<p>After adding code for instantiating some prefabs, the result is what you see here:</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/FinalResult.gif" alt="ObjectivesContainer inspector." /></p>
+<p>Looking at it closely, there’s still room for improvement. The width of the rows appears to animate more quickly than the height, since we’re animating to 0 and not the edge of the container. This turns out to be a bit tricky to solve since the edge of the container could change in the middle of the animation. Still, this is good enough for something like the objectives list described above, since the user’s eyes won’t be focusing on it most of the time.</p>
+<p><a href="https://github.com/Chaosed0/LayoutGroupAnimation">Here is a git repository containing a demonstration Unity project</a>. This is what I used to create the final result gif above. There’s a few things in there I didn’t demonstrate explicitly in this post, such as updates and removals.</p>
+<p>Here is the <a href="https://gridpulselegions.com/">RTS that I made the effect for</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="stress-free-game-development-powering-up-your-studio-with-devops"><a class="header" href="#stress-free-game-development-powering-up-your-studio-with-devops"><a href="https://youtu.be/t9HRzE7_2Xc">Stress-Free Game Development: Powering Up Your Studio With DevOps</a></a></h1>
+<h1 id="background"><a class="header" href="#background">Background</a></h1>
+<ul>
+<li>Made CrashLands in 2015
+<ul>
+<li>
+<p>Worked on for two years</p>
+</li>
+<li>
+<p>Did a beta test</p>
+<ul>
+<li>150 players</li>
+<li>2,200 unique bug reports</li>
+<li>Crunched for 2 months fixing bugs</li>
+<li>Were not able to fix everything</li>
+</ul>
+</li>
+<li>
+<p>Launch</p>
+<ul>
+<li>100,000 players
+<ul>
+<li>New bug report wave</li>
+<li>Bugs introduced during crunch</li>
+<li>Crunched to fix bugs instead of working on new content</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Content Updates</p>
+<ul>
+<li>None of the builds were working</li>
+<li>Weeks to get builds working again</li>
+<li>New wave of bug reports</li>
+<li>Only 2 content patches in a year (a constant, waking nightmare)</li>
+</ul>
+</li>
+<li>
+<p>Hired more people</p>
+<ul>
+<li>Had a hard time integrating people as there were no systems</li>
+<li>The members were doing so many things that they didn't have the time to create any kind of onboarding structure</li>
+<li>New members wanted to contribute but unable to</li>
+</ul>
+</li>
+<li>
+<p>The art problem</p>
+<ul>
+<li>The increase in artists meant twice as much art to implement into the game for the solo programmer</li>
+<li>Left less time for developing game systems</li>
+<li>Artists got demoralized because assets were not being used</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="art-asset-pipeline"><a class="header" href="#art-asset-pipeline">Art Asset Pipeline</a></h2>
+<p><img src="https://i.imgur.com/kbMJJfh.png" alt="" /></p>
+<ul>
+<li>Offloaded the <code>Import Asset</code> step from the programmer
+<ul>
+<li>Solved by the Inkbot
+<ul>
+<li>Made by another developer in the team which allowed the programmer to mass import the assets from the art team in seconds</li>
+<li>For it to work, assets had to be standardized, which meant that the export side should also be automated</li>
+</ul>
+</li>
+<li>While faster for the programmer to import, it also sped up the artists which ended up with more unused assets
+<ul>
+<li>Art team became more demoralized and the programmer became more stressed</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2018"><a class="header" href="#2018">2018</a></h2>
+<ul>
+<li>Company was scaled down</li>
+<li>Previous game being worked on was scrapped due to out-of-control processes</li>
+<li>Started development of LevelHead
+<ul>
+<li>Similar to the original Mario Maker</li>
+<li>Development continues like before</li>
+<li>When the launch was discussed, it was found that LevelHead was getting similar to the launch of CrashLands
+<ul>
+<li>The game wasn't being actively tested</li>
+<li>Would probably go through the same motions all over again</li>
+<li>Learned DevOps through research</li>
+<li>Applied DevOps principles over the next year and turned the whole ship around</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/9b0qgFI.png" alt="" /></p>
+<h1 id="devops"><a class="header" href="#devops">DevOps</a></h1>
+<p><img src="https://i.imgur.com/sANLeF4.png" alt="" /></p>
+<h1 id="the-three-ways-of-devops"><a class="header" href="#the-three-ways-of-devops">The Three Ways of DevOps</a></h1>
+<h2 id="managing-the-flow-of-work"><a class="header" href="#managing-the-flow-of-work">Managing the Flow of Work</a></h2>
+<p><img src="https://i.imgur.com/QtnQIkk.png" alt="" /></p>
+<h3 id="eliminating-waste"><a class="header" href="#eliminating-waste">Eliminating Waste</a></h3>
+<h4 id="waste"><a class="header" href="#waste">Waste</a></h4>
+<ul>
+<li>Anything you do that isn't delivering value to your customer.</li>
+<li>Always worse than you think</li>
+<li>Creates more waste and is self-perpetuating</li>
+</ul>
+<h4 id="the-circle-of-waste"><a class="header" href="#the-circle-of-waste">The Circle of Waste</a></h4>
+<h5 id="motion"><a class="header" href="#motion">Motion</a></h5>
+<ul>
+<li>Waste produced by movement of materials or information</li>
+<li>Sending multiple emails to communicate and still having a meeting</li>
+<li>Introduces a lot of <a href="stress-free_gdc.html#waiting">waiting</a> and <a href="stress-free_gdc.html#task-switching">task switching</a></li>
+<li>Create self-service systems such as good documentation so that information is always available rather than waiting for somebody else for the information</li>
+</ul>
+<h5 id="task-switching"><a class="header" href="#task-switching">Task Switching</a></h5>
+<ul>
+<li>Waste produced by the expense of changing between contexts
+<ul>
+<li>Meeting -&gt; Production -&gt; Meeting -&gt; Lunch -&gt; Work -&gt; Meeting</li>
+<li>Causes <a href="stress-free_gdc.html#waiting">waiting</a> and <a href="stress-free_gdc.html#defects">defects</a></li>
+<li>Can be minimized by batching work by type
+<ul>
+<li>Save meetings at the end of the day</li>
+<li>Check emails in bursts instead of constantly</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="defects"><a class="header" href="#defects">Defects</a></h5>
+<ul>
+<li>When something isn't usable by the people downstream from you
+<ul>
+<li>Assets in the wrong size, sound in the wrong format, etc</li>
+<li>Creates the following waste:
+<ul>
+<li><a href="stress-free_gdc.html#motion">motion</a> because the person encountering the defect has to stop working and return it to be fixed</li>
+<li><a href="stress-free_gdc.html#task-switching">task switching</a> because the previous developer planned on doing one thing and is now fixing errors</li>
+<li>The person now has an <a href="stress-free_gdc.html#unfinished-projects">unfinished projects</a> because they are <a href="stress-free_gdc.html#waiting">waiting</a> for the problem to be resolved</li>
+<li>If a defect makes its way to a player, the developers would have to engage in <a href="stress-free_gdc.html#heroics">heroics</a> like pulling all-nighters to deploy a hotfix</li>
+</ul>
+</li>
+<li>To cut down defects, fix the processes that create them in the first place</li>
+</ul>
+</li>
+</ul>
+<h5 id="waiting"><a class="header" href="#waiting">Waiting</a></h5>
+<ul>
+<li>When something is supposed to happen, but it doesn't</li>
+<li>Waiting gives the person a tendency to not start working because something else might arrive at any moment which would cause a <a href="stress-free_gdc.html#task-switching">task switch</a> and lead to an <a href="stress-free_gdc.html#unfinished-projects">unfinished project</a></li>
+<li>To reduce waiting, deliver work continuously in small batches</li>
+</ul>
+<h5 id="unfinished-projects"><a class="header" href="#unfinished-projects">Unfinished Projects</a></h5>
+<ul>
+<li>A project that work has stopped on for an extended period of time
+<ul>
+<li>Starts working on a big feature while other tasks pile up</li>
+<li>Big feature gets put on hold</li>
+<li>Enough time goes by that it's either better to scrap the feature or start over</li>
+</ul>
+</li>
+<li>When a project gets unfinished, the context of the world changes
+<ul>
+<li>Has a high likelihood of creating <a href="stress-free_gdc.html#defects">defects</a> as you try to bring the project up to speed</li>
+<li>Might need to pull <a href="stress-free_gdc.html#heroics">heroics</a> to finish the project</li>
+</ul>
+</li>
+<li>To avoid, break the project down into the smallest deliverable phases
+<ul>
+<li>the project is always in some kind of finished and usable state, even if not fully ideal</li>
+</ul>
+</li>
+</ul>
+<h5 id="manual-processes"><a class="header" href="#manual-processes">Manual Processes</a></h5>
+<ul>
+<li>Something that is done by a person, even though it is always the same
+<ul>
+<li>Tends to create <a href="stress-free_gdc.html#defects">defects</a> because people make mistakes</li>
+<li>Also demands <a href="stress-free_gdc.html#task-switching">task switching</a></li>
+<li>Also creates <a href="stress-free_gdc.html#motion">motion</a> because people might need to communicate</li>
+<li>Makes it difficult to scale the operation</li>
+<li>Creates <a href="stress-free_gdc.html#waiting">waiting</a></li>
+</ul>
+</li>
+<li>Learn how to automate it</li>
+</ul>
+<h5 id="extra-processes"><a class="header" href="#extra-processes">Extra Processes</a></h5>
+<ul>
+<li>Things you are doing that you probably don't need to do
+<ul>
+<li>Lead to the same wastes as <a href="stress-free_gdc.html#manual-processes">manual processes</a> but have different solutions</li>
+</ul>
+</li>
+<li>The solution is to stop doing them
+<ul>
+<li>Asks the question <code>Can we not?</code> to cut extra processes</li>
+</ul>
+</li>
+</ul>
+<h5 id="extra-features"><a class="header" href="#extra-features">Extra Features</a></h5>
+<ul>
+<li>A feature that isn't adding to the player experience
+<ul>
+<li>Every feature adds complexity, which leads to <a href="stress-free_gdc.html#defects">defects</a></li>
+</ul>
+</li>
+<li>Always be vigilant that the feature pushes the vision of a game that the player cares about</li>
+<li>The best way to deal with them is to cut them</li>
+</ul>
+<h5 id="heroics"><a class="header" href="#heroics">Heroics</a></h5>
+<ul>
+<li>When unreasonable acts are required to deliver a required result
+<ul>
+<li>Crunching</li>
+<li>When in heroic panic mode, you are creating more of the other kinds of waste</li>
+</ul>
+</li>
+<li>Heroics are the worst kinds of waste because they are cancerous</li>
+<li>Heroics are performed because processes have broken down</li>
+</ul>
+<p><img src="https://i.imgur.com/lSZr8Q8.png" alt="" /></p>
+<p><img src="https://i.imgur.com/nQNh0X8.png" alt="" /></p>
+<p><img src="https://i.imgur.com/zwpkcBb.png" alt="" /></p>
+<h4 id="fixing-the-problem"><a class="header" href="#fixing-the-problem">Fixing the problem</a></h4>
+<h5 id="making-the-work-visible"><a class="header" href="#making-the-work-visible">Making the work visible</a></h5>
+<ul>
+<li>Find all the places they were creating waste</li>
+<li>Twice-Weekly Production Meetings
+<ul>
+<li>Agree what is going to happen within the next 16 hours of work</li>
+<li>Shorter sprints led to shorter meetings, which led them to be more responsive and iterative</li>
+</ul>
+</li>
+<li>Transitioned to using Trello
+<ul>
+<li>Allow the boards to guide the flow of work to something they can easily see</li>
+<li>5 boards:
+<ul>
+<li>Inbox</li>
+<li>To-Do</li>
+<li>Doing (Sprint)</li>
+<li>Testing</li>
+<li>Done</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="rules"><a class="header" href="#rules">Rules</a></h6>
+<ol>
+<li>New tasks go to the inbox and are evaluated next meeting -- avoids being derailed by unplanned work
+<ul>
+<li>New tasks always go to the inbox first and cannot be put into any other list</li>
+<li>Each production meeting evaluates the inbox and decides the priority</li>
+<li>This meant everybody knew what the next two days of work looked like</li>
+<li>New tasks do not interfere other's work because they are not yet evaluated</li>
+</ul>
+</li>
+<li>Time is a constraint, not a flexible resource. Avoids burnout and crunch.
+<ul>
+<li>Only 16 hours of work can be handed to any one person during that sprint</li>
+<li>Exceeding demands that person to crunch</li>
+<li>Refusing to crunch is the core way to bake quality into the production pipeline</li>
+</ul>
+</li>
+<li>Work should go through the whole flow. &quot;Testing&quot; step requires that everything be verified before going downstream, reducing <a href="stress-free_gdc.html#defects">defects</a>.
+<ul>
+<li>Keeps work from flowing backwards because errors get fixed at the source</li>
+</ul>
+</li>
+</ol>
+<h6 id="revised-art-asset-pipeline"><a class="header" href="#revised-art-asset-pipeline">Revised Art Asset Pipeline</a></h6>
+<p><img src="https://i.imgur.com/BPUocYB.png" alt="" /></p>
+<ul>
+<li>The errors are no longer the programmer's problem</li>
+</ul>
+<h6 id="the-programmer-is-the-bottleneck"><a class="header" href="#the-programmer-is-the-bottleneck">The programmer is the bottleneck</a></h6>
+<p>Bottleneck</p>
+<ul>
+<li>Part of a process that is receiving more work than it can handle</li>
+<li>Every production process has at least one bottleneck</li>
+</ul>
+<p><img src="https://i.imgur.com/cHKBFoo.png" alt="" /></p>
+<p>Assets now get longer to create due to the new pipeline which led to reduction of assets output due to testing</p>
+<p><img src="https://i.imgur.com/ExWnZJN.png" alt="" /></p>
+<p>Simply moving a task to another person doubled the amount of art that can be used in the game</p>
+<p><img src="https://i.imgur.com/lQdS6Yk.png" alt="" /></p>
+<h6 id="deployments-are-also-bottlenecked"><a class="header" href="#deployments-are-also-bottlenecked">Deployments are also bottlenecked</a></h6>
+<p>Deployments</p>
+<ul>
+<li>Getting the game into people's hands</li>
+<li>Have been a problem since day 1 because it's difficult</li>
+<li>If a process is painful, you should do it more, not less</li>
+<li>If you don't confront it, you don't learn about it, you don't fix it</li>
+</ul>
+<p>Goal: Continuous Deployments</p>
+<ul>
+<li>A constant stream of tiny changes</li>
+<li>Each tiny change gets delivered to QA</li>
+<li>Allows to detect and fix problems immediately</li>
+<li>Fewer catastrophic failures</li>
+<li>Easier to identify where problems emerge</li>
+<li>Quickly fix issues with deployments</li>
+</ul>
+<p><img src="https://i.imgur.com/OvzPk6g.png" alt="" /></p>
+<p>Due to the time it takes to make a single build, other platforms were untested</p>
+<p>GamePipe</p>
+<ul>
+<li>What is the simplest version of the gamepipe that can be used immediately
+<ol>
+<li>Builds get uploaded to dropbox when commits are pushed to master
+<ul>
+<li>Game programmer's time is no longer going into compiling builds</li>
+<li>No <a href="stress-free_gdc.html#manual-processes">manual work</a> of delivering builds to testers, saving time and reducing <a href="stress-free_gdc.html#task-switching">task switching</a> and <a href="stress-free_gdc.html#defects">defects</a></li>
+<li>Environment Configuration is no longer a problem
+<ul>
+<li>Builds always use the same versions/sdks/etc</li>
+<li>Weekly builds become daily builds</li>
+<li>Changes are tested within 24 hours</li>
+</ul>
+</li>
+<li>Patch notes were still being written manually</li>
+</ul>
+</li>
+<li>Git commits are converted into patch notes which gets posted into the website
+<ul>
+<li>Allows for continuous deployments</li>
+<li>Removes <a href="stress-free_gdc.html#defects">defects</a>, like missing changes in the patch notes</li>
+<li>Git commits become cleaner, more readable, and more useful</li>
+</ul>
+</li>
+<li>Builds now get deployed to Steam
+<ul>
+<li>Testers always have the latest version of the game automatically</li>
+</ul>
+</li>
+<li>Builds now get deployed to all platforms</li>
+<li>Automatic Localization was added
+<ul>
+<li>New translations get added every version</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>A fully manual, 1-hour process becomes 5 seconds to trigger</li>
+<li>Went from weekly testing to continuous testing</li>
+<li>Builds become more stable</li>
+<li>Deployments are painless and easy</li>
+<li>Create a simple automatic deployment pipeline and begin using it as soon as possible. Then, improve it over time.</li>
+</ul>
+<p><img src="https://i.imgur.com/21dpfJC.png" alt="" /></p>
+<h6 id="business-administration-bottleneck"><a class="header" href="#business-administration-bottleneck">Business Administration Bottleneck</a></h6>
+<p>Employee Training Process</p>
+<ul>
+<li>Trello Board
+<ul>
+<li>Inbox -&gt; To-Do -&gt; Doing (Sprint) -&gt; Testing -&gt; Done</li>
+</ul>
+</li>
+<li>Populated the &quot;To-Do&quot; list with training tasks
+<ul>
+<li>Generate knowledge and insight to how the studio works, and the role of the employee being hired</li>
+</ul>
+</li>
+<li>Twice-weekly production meetings to review and plan
+<ul>
+<li>Tasks were broken down on hours</li>
+</ul>
+</li>
+<li>The new hire always knew what to work on and why</li>
+<li>Later used the same process to hire a full-time QA</li>
+<li>Onboarding was simple and stress free</li>
+<li>Result: Reduced strain on production, increased studio output.</li>
+</ul>
+<p><img src="https://i.imgur.com/3hEewFa.png" alt="" /></p>
+<h2 id="amplifying-feedback-loops"><a class="header" href="#amplifying-feedback-loops">Amplifying Feedback Loops</a></h2>
+<p>Work flows forwards. Feedback flows backwards!</p>
+<ul>
+<li>Feedback allows us to catch problems, improve processes, and build quality into the pipeline.</li>
+<li>Develop tools and systems to gather feedback from people downstream.</li>
+</ul>
+<h3 id="the-qa-testing-pipeline"><a class="header" href="#the-qa-testing-pipeline">The QA Testing Pipeline</a></h3>
+<p><img src="https://i.imgur.com/21dpfJC.png" alt="" /></p>
+<ul>
+<li>Speeding up the QA pipeline would lead to more work because reports issues are fully manual</li>
+<li>Used Trello API so that issues get converted to cards</li>
+<li>Turned patch notes into a QA testing checklist
+<ul>
+<li>On the developer side, there is a count of the number of testers that have reported that test</li>
+<li>Let's them know the test coverage</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/xH0Ugkb.png" alt="" /></p>
+<p><img src="https://i.imgur.com/YtB4boV.png" alt="" /></p>
+<h2 id="continuous-learning"><a class="header" href="#continuous-learning">Continuous Learning</a></h2>
+<p>Keep iterating on your processes!</p>
+<ul>
+<li>Ensure everyone on the team has the right to experiment
+<ul>
+<li>People offer risky ideas, and management needs to hear those out</li>
+</ul>
+</li>
+<li>Reinforce Culture of psychological safety</li>
+<li>Your work culture is a result of the structures and processes you use</li>
+</ul>
+<p>What structure to reinforce learning?</p>
+<ul>
+<li>New structure: Formalized Quarterly Reviews
+<ul>
+<li>Every quarter team members get questionnaires
+<ul>
+<li>Identifies how they're feeling about their work in ways they believe their time/talent are wasted</li>
+<li>use these answers plus waste analysis to look for ways to improve our processes</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Routine Evaluation Structures Matter</p>
+<ul>
+<li>use them to create a culture of learning</li>
+</ul>
+<h1 id="recap"><a class="header" href="#recap">Recap</a></h1>
+<ol>
+<li>Master the flow of work
+<ol>
+<li>Make sure the work flows forwards</li>
+<li>Watch out for bottlenecks</li>
+<li>Cut down on defects</li>
+<li>Eliminate Waste</li>
+</ol>
+</li>
+<li>Amplify feedback loops
+<ol>
+<li>Make sure you are getting the information you need from the people downstream to make their and your lives better</li>
+</ol>
+</li>
+<li>Iterate &amp; Learn
+<ol>
+<li>Create a culture of continuous learning and experimentation</li>
+<li>Constantly improve and deliver value to your players</li>
+</ol>
+</li>
+</ol>
+<h1 id="the-curve-ball"><a class="header" href="#the-curve-ball">The Curve Ball</a></h1>
+<ul>
+<li>Mario Maker 2 is announced and it is launching the same month as Levelhead</li>
+<li>Beating Mario Maker 2 to launch meant that the only available date was on April - two months earlier than planned</li>
+<li>The target platform was changed to steam</li>
+<li>Pre-Alpha testing began on March 1 with a small group</li>
+<li>Alpha testing began on March 8 to a larger group</li>
+<li>The game was launched in early access on April 18</li>
+<li>Instead of delivering the game to players in 3 months, they had 2 weeks</li>
+</ul>
+<h2 id="because-of-the-devops-pipeline"><a class="header" href="#because-of-the-devops-pipeline">Because of the DevOps pipeline</a></h2>
+<ul>
+<li>Builds were already stable and easily patchable
+<ul>
+<li>Priorities were shifted to get features to alpha</li>
+</ul>
+</li>
+<li>In two weeks, alpha starts, and
+<ul>
+<li>No major problems</li>
+<li>Thousands of hours testing: one crash. Fixed, tested, deployed within hours</li>
+</ul>
+</li>
+<li>Early Access Launch Day
+<ul>
+<li>Everything was fine</li>
+<li>No emergency patches</li>
+</ul>
+</li>
+</ul>
+<h1 id="11-months-later"><a class="header" href="#11-months-later">11 Months Later</a></h1>
+<ul>
+<li>Still doing continuous deployments</li>
+<li>97% positive on Steam</li>
+<li>2-3 content patches delivered to players per month</li>
+<li>Patches are no big deal</li>
+<li>No heroics, even with 6 platforms and 11 languages with a team of 6</li>
+</ul>
+<p>The stresses of game development are from bad practices</p>
+<h1 id="the-three-ways"><a class="header" href="#the-three-ways">The Three Ways</a></h1>
+<ol>
+<li>Managing the Flow of Work</li>
+<li>Amplifying Feedback Loops</li>
+<li>Continuous Learning</li>
+</ol>
+<h1 id="big-takeaways"><a class="header" href="#big-takeaways">Big Takeaways</a></h1>
+<ol>
+<li>Make the work visible</li>
+<li>Waste is worse than you think</li>
+<li>Focus efforts on bottlenecks</li>
+<li>Focus on small batch delivery</li>
+<li>Use continuous deployments to improve quality</li>
+</ol>
+<h1 id="the-types-of-waste"><a class="header" href="#the-types-of-waste">The types of Waste</a></h1>
+<ol>
+<li>Motion</li>
+<li>Task Switching</li>
+<li>Defects</li>
+<li>Waiting</li>
+<li>Manual Processes</li>
+<li>Extra Processes</li>
+<li>Extra Features</li>
+<li>Unfinished Projects</li>
+<li>Heroics</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="about-me"><a class="header" href="#about-me">About Me</a></h1>
+<p>Hi, my name is Jolo. I am currently a game development student residing at Lipa, Batangas. I mostly make games in Unity, but I also tend to check out other tech in my free time. Aside from game development, in my free time I play video games (obviously), read manga, watch vtubers, and learn more about tech both in hardware and software.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>

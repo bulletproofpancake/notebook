@@ -1,0 +1,688 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Stress-Free Game Development: Powering Up Your Studio With DevOps - My Notebook</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Articles</li><li class="chapter-item expanded "><a href="Procedural Dungeon Generation Algorithm.html"><strong aria-hidden="true">1.</strong> Procedural Dungeon Generation Algorithm</a></li><li class="chapter-item expanded "><a href="A Technique for Animating a Unity UI Layout Group.html"><strong aria-hidden="true">2.</strong> A Technique for Animating a Unity UI Layout Group</a></li><li class="chapter-item expanded "><a href="stress-free_gdc.html" class="active"><strong aria-hidden="true">3.</strong> Stress-Free Game Development: Powering Up Your Studio With DevOps</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ABOUT.html">About Me</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">My Notebook</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="stress-free-game-development-powering-up-your-studio-with-devops"><a class="header" href="#stress-free-game-development-powering-up-your-studio-with-devops"><a href="https://youtu.be/t9HRzE7_2Xc">Stress-Free Game Development: Powering Up Your Studio With DevOps</a></a></h1>
+<h1 id="background"><a class="header" href="#background">Background</a></h1>
+<ul>
+<li>Made CrashLands in 2015
+<ul>
+<li>
+<p>Worked on for two years</p>
+</li>
+<li>
+<p>Did a beta test</p>
+<ul>
+<li>150 players</li>
+<li>2,200 unique bug reports</li>
+<li>Crunched for 2 months fixing bugs</li>
+<li>Were not able to fix everything</li>
+</ul>
+</li>
+<li>
+<p>Launch</p>
+<ul>
+<li>100,000 players
+<ul>
+<li>New bug report wave</li>
+<li>Bugs introduced during crunch</li>
+<li>Crunched to fix bugs instead of working on new content</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Content Updates</p>
+<ul>
+<li>None of the builds were working</li>
+<li>Weeks to get builds working again</li>
+<li>New wave of bug reports</li>
+<li>Only 2 content patches in a year (a constant, waking nightmare)</li>
+</ul>
+</li>
+<li>
+<p>Hired more people</p>
+<ul>
+<li>Had a hard time integrating people as there were no systems</li>
+<li>The members were doing so many things that they didn't have the time to create any kind of onboarding structure</li>
+<li>New members wanted to contribute but unable to</li>
+</ul>
+</li>
+<li>
+<p>The art problem</p>
+<ul>
+<li>The increase in artists meant twice as much art to implement into the game for the solo programmer</li>
+<li>Left less time for developing game systems</li>
+<li>Artists got demoralized because assets were not being used</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="art-asset-pipeline"><a class="header" href="#art-asset-pipeline">Art Asset Pipeline</a></h2>
+<p><img src="https://i.imgur.com/kbMJJfh.png" alt="" /></p>
+<ul>
+<li>Offloaded the <code>Import Asset</code> step from the programmer
+<ul>
+<li>Solved by the Inkbot
+<ul>
+<li>Made by another developer in the team which allowed the programmer to mass import the assets from the art team in seconds</li>
+<li>For it to work, assets had to be standardized, which meant that the export side should also be automated</li>
+</ul>
+</li>
+<li>While faster for the programmer to import, it also sped up the artists which ended up with more unused assets
+<ul>
+<li>Art team became more demoralized and the programmer became more stressed</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2018"><a class="header" href="#2018">2018</a></h2>
+<ul>
+<li>Company was scaled down</li>
+<li>Previous game being worked on was scrapped due to out-of-control processes</li>
+<li>Started development of LevelHead
+<ul>
+<li>Similar to the original Mario Maker</li>
+<li>Development continues like before</li>
+<li>When the launch was discussed, it was found that LevelHead was getting similar to the launch of CrashLands
+<ul>
+<li>The game wasn't being actively tested</li>
+<li>Would probably go through the same motions all over again</li>
+<li>Learned DevOps through research</li>
+<li>Applied DevOps principles over the next year and turned the whole ship around</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/9b0qgFI.png" alt="" /></p>
+<h1 id="devops"><a class="header" href="#devops">DevOps</a></h1>
+<p><img src="https://i.imgur.com/sANLeF4.png" alt="" /></p>
+<h1 id="the-three-ways-of-devops"><a class="header" href="#the-three-ways-of-devops">The Three Ways of DevOps</a></h1>
+<h2 id="managing-the-flow-of-work"><a class="header" href="#managing-the-flow-of-work">Managing the Flow of Work</a></h2>
+<p><img src="https://i.imgur.com/QtnQIkk.png" alt="" /></p>
+<h3 id="eliminating-waste"><a class="header" href="#eliminating-waste">Eliminating Waste</a></h3>
+<h4 id="waste"><a class="header" href="#waste">Waste</a></h4>
+<ul>
+<li>Anything you do that isn't delivering value to your customer.</li>
+<li>Always worse than you think</li>
+<li>Creates more waste and is self-perpetuating</li>
+</ul>
+<h4 id="the-circle-of-waste"><a class="header" href="#the-circle-of-waste">The Circle of Waste</a></h4>
+<h5 id="motion"><a class="header" href="#motion">Motion</a></h5>
+<ul>
+<li>Waste produced by movement of materials or information</li>
+<li>Sending multiple emails to communicate and still having a meeting</li>
+<li>Introduces a lot of <a href="#waiting">waiting</a> and <a href="#task-switching">task switching</a></li>
+<li>Create self-service systems such as good documentation so that information is always available rather than waiting for somebody else for the information</li>
+</ul>
+<h5 id="task-switching"><a class="header" href="#task-switching">Task Switching</a></h5>
+<ul>
+<li>Waste produced by the expense of changing between contexts
+<ul>
+<li>Meeting -&gt; Production -&gt; Meeting -&gt; Lunch -&gt; Work -&gt; Meeting</li>
+<li>Causes <a href="#waiting">waiting</a> and <a href="#defects">defects</a></li>
+<li>Can be minimized by batching work by type
+<ul>
+<li>Save meetings at the end of the day</li>
+<li>Check emails in bursts instead of constantly</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="defects"><a class="header" href="#defects">Defects</a></h5>
+<ul>
+<li>When something isn't usable by the people downstream from you
+<ul>
+<li>Assets in the wrong size, sound in the wrong format, etc</li>
+<li>Creates the following waste:
+<ul>
+<li><a href="#motion">motion</a> because the person encountering the defect has to stop working and return it to be fixed</li>
+<li><a href="#task-switching">task switching</a> because the previous developer planned on doing one thing and is now fixing errors</li>
+<li>The person now has an <a href="#unfinished-projects">unfinished projects</a> because they are <a href="#waiting">waiting</a> for the problem to be resolved</li>
+<li>If a defect makes its way to a player, the developers would have to engage in <a href="#heroics">heroics</a> like pulling all-nighters to deploy a hotfix</li>
+</ul>
+</li>
+<li>To cut down defects, fix the processes that create them in the first place</li>
+</ul>
+</li>
+</ul>
+<h5 id="waiting"><a class="header" href="#waiting">Waiting</a></h5>
+<ul>
+<li>When something is supposed to happen, but it doesn't</li>
+<li>Waiting gives the person a tendency to not start working because something else might arrive at any moment which would cause a <a href="#task-switching">task switch</a> and lead to an <a href="#unfinished-projects">unfinished project</a></li>
+<li>To reduce waiting, deliver work continuously in small batches</li>
+</ul>
+<h5 id="unfinished-projects"><a class="header" href="#unfinished-projects">Unfinished Projects</a></h5>
+<ul>
+<li>A project that work has stopped on for an extended period of time
+<ul>
+<li>Starts working on a big feature while other tasks pile up</li>
+<li>Big feature gets put on hold</li>
+<li>Enough time goes by that it's either better to scrap the feature or start over</li>
+</ul>
+</li>
+<li>When a project gets unfinished, the context of the world changes
+<ul>
+<li>Has a high likelihood of creating <a href="#defects">defects</a> as you try to bring the project up to speed</li>
+<li>Might need to pull <a href="#heroics">heroics</a> to finish the project</li>
+</ul>
+</li>
+<li>To avoid, break the project down into the smallest deliverable phases
+<ul>
+<li>the project is always in some kind of finished and usable state, even if not fully ideal</li>
+</ul>
+</li>
+</ul>
+<h5 id="manual-processes"><a class="header" href="#manual-processes">Manual Processes</a></h5>
+<ul>
+<li>Something that is done by a person, even though it is always the same
+<ul>
+<li>Tends to create <a href="#defects">defects</a> because people make mistakes</li>
+<li>Also demands <a href="#task-switching">task switching</a></li>
+<li>Also creates <a href="#motion">motion</a> because people might need to communicate</li>
+<li>Makes it difficult to scale the operation</li>
+<li>Creates <a href="#waiting">waiting</a></li>
+</ul>
+</li>
+<li>Learn how to automate it</li>
+</ul>
+<h5 id="extra-processes"><a class="header" href="#extra-processes">Extra Processes</a></h5>
+<ul>
+<li>Things you are doing that you probably don't need to do
+<ul>
+<li>Lead to the same wastes as <a href="#manual-processes">manual processes</a> but have different solutions</li>
+</ul>
+</li>
+<li>The solution is to stop doing them
+<ul>
+<li>Asks the question <code>Can we not?</code> to cut extra processes</li>
+</ul>
+</li>
+</ul>
+<h5 id="extra-features"><a class="header" href="#extra-features">Extra Features</a></h5>
+<ul>
+<li>A feature that isn't adding to the player experience
+<ul>
+<li>Every feature adds complexity, which leads to <a href="#defects">defects</a></li>
+</ul>
+</li>
+<li>Always be vigilant that the feature pushes the vision of a game that the player cares about</li>
+<li>The best way to deal with them is to cut them</li>
+</ul>
+<h5 id="heroics"><a class="header" href="#heroics">Heroics</a></h5>
+<ul>
+<li>When unreasonable acts are required to deliver a required result
+<ul>
+<li>Crunching</li>
+<li>When in heroic panic mode, you are creating more of the other kinds of waste</li>
+</ul>
+</li>
+<li>Heroics are the worst kinds of waste because they are cancerous</li>
+<li>Heroics are performed because processes have broken down</li>
+</ul>
+<p><img src="https://i.imgur.com/lSZr8Q8.png" alt="" /></p>
+<p><img src="https://i.imgur.com/nQNh0X8.png" alt="" /></p>
+<p><img src="https://i.imgur.com/zwpkcBb.png" alt="" /></p>
+<h4 id="fixing-the-problem"><a class="header" href="#fixing-the-problem">Fixing the problem</a></h4>
+<h5 id="making-the-work-visible"><a class="header" href="#making-the-work-visible">Making the work visible</a></h5>
+<ul>
+<li>Find all the places they were creating waste</li>
+<li>Twice-Weekly Production Meetings
+<ul>
+<li>Agree what is going to happen within the next 16 hours of work</li>
+<li>Shorter sprints led to shorter meetings, which led them to be more responsive and iterative</li>
+</ul>
+</li>
+<li>Transitioned to using Trello
+<ul>
+<li>Allow the boards to guide the flow of work to something they can easily see</li>
+<li>5 boards:
+<ul>
+<li>Inbox</li>
+<li>To-Do</li>
+<li>Doing (Sprint)</li>
+<li>Testing</li>
+<li>Done</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="rules"><a class="header" href="#rules">Rules</a></h6>
+<ol>
+<li>New tasks go to the inbox and are evaluated next meeting -- avoids being derailed by unplanned work
+<ul>
+<li>New tasks always go to the inbox first and cannot be put into any other list</li>
+<li>Each production meeting evaluates the inbox and decides the priority</li>
+<li>This meant everybody knew what the next two days of work looked like</li>
+<li>New tasks do not interfere other's work because they are not yet evaluated</li>
+</ul>
+</li>
+<li>Time is a constraint, not a flexible resource. Avoids burnout and crunch.
+<ul>
+<li>Only 16 hours of work can be handed to any one person during that sprint</li>
+<li>Exceeding demands that person to crunch</li>
+<li>Refusing to crunch is the core way to bake quality into the production pipeline</li>
+</ul>
+</li>
+<li>Work should go through the whole flow. &quot;Testing&quot; step requires that everything be verified before going downstream, reducing <a href="#defects">defects</a>.
+<ul>
+<li>Keeps work from flowing backwards because errors get fixed at the source</li>
+</ul>
+</li>
+</ol>
+<h6 id="revised-art-asset-pipeline"><a class="header" href="#revised-art-asset-pipeline">Revised Art Asset Pipeline</a></h6>
+<p><img src="https://i.imgur.com/BPUocYB.png" alt="" /></p>
+<ul>
+<li>The errors are no longer the programmer's problem</li>
+</ul>
+<h6 id="the-programmer-is-the-bottleneck"><a class="header" href="#the-programmer-is-the-bottleneck">The programmer is the bottleneck</a></h6>
+<p>Bottleneck</p>
+<ul>
+<li>Part of a process that is receiving more work than it can handle</li>
+<li>Every production process has at least one bottleneck</li>
+</ul>
+<p><img src="https://i.imgur.com/cHKBFoo.png" alt="" /></p>
+<p>Assets now get longer to create due to the new pipeline which led to reduction of assets output due to testing</p>
+<p><img src="https://i.imgur.com/ExWnZJN.png" alt="" /></p>
+<p>Simply moving a task to another person doubled the amount of art that can be used in the game</p>
+<p><img src="https://i.imgur.com/lQdS6Yk.png" alt="" /></p>
+<h6 id="deployments-are-also-bottlenecked"><a class="header" href="#deployments-are-also-bottlenecked">Deployments are also bottlenecked</a></h6>
+<p>Deployments</p>
+<ul>
+<li>Getting the game into people's hands</li>
+<li>Have been a problem since day 1 because it's difficult</li>
+<li>If a process is painful, you should do it more, not less</li>
+<li>If you don't confront it, you don't learn about it, you don't fix it</li>
+</ul>
+<p>Goal: Continuous Deployments</p>
+<ul>
+<li>A constant stream of tiny changes</li>
+<li>Each tiny change gets delivered to QA</li>
+<li>Allows to detect and fix problems immediately</li>
+<li>Fewer catastrophic failures</li>
+<li>Easier to identify where problems emerge</li>
+<li>Quickly fix issues with deployments</li>
+</ul>
+<p><img src="https://i.imgur.com/OvzPk6g.png" alt="" /></p>
+<p>Due to the time it takes to make a single build, other platforms were untested</p>
+<p>GamePipe</p>
+<ul>
+<li>What is the simplest version of the gamepipe that can be used immediately
+<ol>
+<li>Builds get uploaded to dropbox when commits are pushed to master
+<ul>
+<li>Game programmer's time is no longer going into compiling builds</li>
+<li>No <a href="#manual-processes">manual work</a> of delivering builds to testers, saving time and reducing <a href="#task-switching">task switching</a> and <a href="#defects">defects</a></li>
+<li>Environment Configuration is no longer a problem
+<ul>
+<li>Builds always use the same versions/sdks/etc</li>
+<li>Weekly builds become daily builds</li>
+<li>Changes are tested within 24 hours</li>
+</ul>
+</li>
+<li>Patch notes were still being written manually</li>
+</ul>
+</li>
+<li>Git commits are converted into patch notes which gets posted into the website
+<ul>
+<li>Allows for continuous deployments</li>
+<li>Removes <a href="#defects">defects</a>, like missing changes in the patch notes</li>
+<li>Git commits become cleaner, more readable, and more useful</li>
+</ul>
+</li>
+<li>Builds now get deployed to Steam
+<ul>
+<li>Testers always have the latest version of the game automatically</li>
+</ul>
+</li>
+<li>Builds now get deployed to all platforms</li>
+<li>Automatic Localization was added
+<ul>
+<li>New translations get added every version</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>A fully manual, 1-hour process becomes 5 seconds to trigger</li>
+<li>Went from weekly testing to continuous testing</li>
+<li>Builds become more stable</li>
+<li>Deployments are painless and easy</li>
+<li>Create a simple automatic deployment pipeline and begin using it as soon as possible. Then, improve it over time.</li>
+</ul>
+<p><img src="https://i.imgur.com/21dpfJC.png" alt="" /></p>
+<h6 id="business-administration-bottleneck"><a class="header" href="#business-administration-bottleneck">Business Administration Bottleneck</a></h6>
+<p>Employee Training Process</p>
+<ul>
+<li>Trello Board
+<ul>
+<li>Inbox -&gt; To-Do -&gt; Doing (Sprint) -&gt; Testing -&gt; Done</li>
+</ul>
+</li>
+<li>Populated the &quot;To-Do&quot; list with training tasks
+<ul>
+<li>Generate knowledge and insight to how the studio works, and the role of the employee being hired</li>
+</ul>
+</li>
+<li>Twice-weekly production meetings to review and plan
+<ul>
+<li>Tasks were broken down on hours</li>
+</ul>
+</li>
+<li>The new hire always knew what to work on and why</li>
+<li>Later used the same process to hire a full-time QA</li>
+<li>Onboarding was simple and stress free</li>
+<li>Result: Reduced strain on production, increased studio output.</li>
+</ul>
+<p><img src="https://i.imgur.com/3hEewFa.png" alt="" /></p>
+<h2 id="amplifying-feedback-loops"><a class="header" href="#amplifying-feedback-loops">Amplifying Feedback Loops</a></h2>
+<p>Work flows forwards. Feedback flows backwards!</p>
+<ul>
+<li>Feedback allows us to catch problems, improve processes, and build quality into the pipeline.</li>
+<li>Develop tools and systems to gather feedback from people downstream.</li>
+</ul>
+<h3 id="the-qa-testing-pipeline"><a class="header" href="#the-qa-testing-pipeline">The QA Testing Pipeline</a></h3>
+<p><img src="https://i.imgur.com/21dpfJC.png" alt="" /></p>
+<ul>
+<li>Speeding up the QA pipeline would lead to more work because reports issues are fully manual</li>
+<li>Used Trello API so that issues get converted to cards</li>
+<li>Turned patch notes into a QA testing checklist
+<ul>
+<li>On the developer side, there is a count of the number of testers that have reported that test</li>
+<li>Let's them know the test coverage</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/xH0Ugkb.png" alt="" /></p>
+<p><img src="https://i.imgur.com/YtB4boV.png" alt="" /></p>
+<h2 id="continuous-learning"><a class="header" href="#continuous-learning">Continuous Learning</a></h2>
+<p>Keep iterating on your processes!</p>
+<ul>
+<li>Ensure everyone on the team has the right to experiment
+<ul>
+<li>People offer risky ideas, and management needs to hear those out</li>
+</ul>
+</li>
+<li>Reinforce Culture of psychological safety</li>
+<li>Your work culture is a result of the structures and processes you use</li>
+</ul>
+<p>What structure to reinforce learning?</p>
+<ul>
+<li>New structure: Formalized Quarterly Reviews
+<ul>
+<li>Every quarter team members get questionnaires
+<ul>
+<li>Identifies how they're feeling about their work in ways they believe their time/talent are wasted</li>
+<li>use these answers plus waste analysis to look for ways to improve our processes</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Routine Evaluation Structures Matter</p>
+<ul>
+<li>use them to create a culture of learning</li>
+</ul>
+<h1 id="recap"><a class="header" href="#recap">Recap</a></h1>
+<ol>
+<li>Master the flow of work
+<ol>
+<li>Make sure the work flows forwards</li>
+<li>Watch out for bottlenecks</li>
+<li>Cut down on defects</li>
+<li>Eliminate Waste</li>
+</ol>
+</li>
+<li>Amplify feedback loops
+<ol>
+<li>Make sure you are getting the information you need from the people downstream to make their and your lives better</li>
+</ol>
+</li>
+<li>Iterate &amp; Learn
+<ol>
+<li>Create a culture of continuous learning and experimentation</li>
+<li>Constantly improve and deliver value to your players</li>
+</ol>
+</li>
+</ol>
+<h1 id="the-curve-ball"><a class="header" href="#the-curve-ball">The Curve Ball</a></h1>
+<ul>
+<li>Mario Maker 2 is announced and it is launching the same month as Levelhead</li>
+<li>Beating Mario Maker 2 to launch meant that the only available date was on April - two months earlier than planned</li>
+<li>The target platform was changed to steam</li>
+<li>Pre-Alpha testing began on March 1 with a small group</li>
+<li>Alpha testing began on March 8 to a larger group</li>
+<li>The game was launched in early access on April 18</li>
+<li>Instead of delivering the game to players in 3 months, they had 2 weeks</li>
+</ul>
+<h2 id="because-of-the-devops-pipeline"><a class="header" href="#because-of-the-devops-pipeline">Because of the DevOps pipeline</a></h2>
+<ul>
+<li>Builds were already stable and easily patchable
+<ul>
+<li>Priorities were shifted to get features to alpha</li>
+</ul>
+</li>
+<li>In two weeks, alpha starts, and
+<ul>
+<li>No major problems</li>
+<li>Thousands of hours testing: one crash. Fixed, tested, deployed within hours</li>
+</ul>
+</li>
+<li>Early Access Launch Day
+<ul>
+<li>Everything was fine</li>
+<li>No emergency patches</li>
+</ul>
+</li>
+</ul>
+<h1 id="11-months-later"><a class="header" href="#11-months-later">11 Months Later</a></h1>
+<ul>
+<li>Still doing continuous deployments</li>
+<li>97% positive on Steam</li>
+<li>2-3 content patches delivered to players per month</li>
+<li>Patches are no big deal</li>
+<li>No heroics, even with 6 platforms and 11 languages with a team of 6</li>
+</ul>
+<p>The stresses of game development are from bad practices</p>
+<h1 id="the-three-ways"><a class="header" href="#the-three-ways">The Three Ways</a></h1>
+<ol>
+<li>Managing the Flow of Work</li>
+<li>Amplifying Feedback Loops</li>
+<li>Continuous Learning</li>
+</ol>
+<h1 id="big-takeaways"><a class="header" href="#big-takeaways">Big Takeaways</a></h1>
+<ol>
+<li>Make the work visible</li>
+<li>Waste is worse than you think</li>
+<li>Focus efforts on bottlenecks</li>
+<li>Focus on small batch delivery</li>
+<li>Use continuous deployments to improve quality</li>
+</ol>
+<h1 id="the-types-of-waste"><a class="header" href="#the-types-of-waste">The types of Waste</a></h1>
+<ol>
+<li>Motion</li>
+<li>Task Switching</li>
+<li>Defects</li>
+<li>Waiting</li>
+<li>Manual Processes</li>
+<li>Extra Processes</li>
+<li>Extra Features</li>
+<li>Unfinished Projects</li>
+<li>Heroics</li>
+</ol>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="A Technique for Animating a Unity UI Layout Group.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="ABOUT.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="A Technique for Animating a Unity UI Layout Group.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="ABOUT.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

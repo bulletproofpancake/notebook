@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Procedural Dungeon Generation Algorithm - My Notebook</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Articles</li><li class="chapter-item expanded "><a href="Procedural Dungeon Generation Algorithm.html" class="active"><strong aria-hidden="true">1.</strong> Procedural Dungeon Generation Algorithm</a></li><li class="chapter-item expanded "><a href="A Technique for Animating a Unity UI Layout Group.html"><strong aria-hidden="true">2.</strong> A Technique for Animating a Unity UI Layout Group</a></li><li class="chapter-item expanded "><a href="stress-free_gdc.html"><strong aria-hidden="true">3.</strong> Stress-Free Game Development: Powering Up Your Studio With DevOps</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ABOUT.html">About Me</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">My Notebook</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="procedural-dungeon-generation-algorithm"><a class="header" href="#procedural-dungeon-generation-algorithm"><a href="https://web.archive.org/web/20220320015843/https://www.gamedeveloper.com/programming/procedural-dungeon-generation-algorithm">Procedural Dungeon Generation Algorithm</a></a></h1>
+<p><a href="https://www.gamedeveloper.com/author/a-adonaac">Written by A Adonaac</a></p>
+<p>This post explains a technique for generating randomized dungeons that was first described by <a href="http://store.steampowered.com/app/278620/">TinyKeepDev</a> <a href="https://www.reddit.com/r/gamedev/comments/1dlwc4/procedural_dungeon_generation_algorithm_explained/">here</a>. I'll go over it in a little more detail than the steps in the original post. The general way the algorithm works is this:</p>
+<p><img src="http://i.imgur.com/wM30Xyl.gif" alt="" /></p>
+<h2 id="generate-rooms"><a class="header" href="#generate-rooms">Generate Rooms</a></h2>
+<p>First you wanna generate some rooms with some width and height that are placed randomly inside a circle. TKdev's algorithm used the normal distribution for generating room sizes and I think that this is generally a good idea as it gives you more parameters to play with. Picking different ratios between width/height mean and standard deviation will generally result in different looking dungeons.</p>
+<p>One function you might need to do this is <em>getRandomPointInCircle</em>:</p>
+<pre><code>function getRandomPointInCircle(radius)
+  local t = 2*math.pi*math.random()
+  local u = math.random()+math.random()
+  local r = nil
+  if u &gt; 1 then r = 2-u else r = u end
+  return radius*r*math.cos(t), radius*r*math.sin(t)
+end
+</code></pre>
+<p>You can get more info on how that works exactly <a href="http://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly">here</a>. And after that you should be able to do something like this:</p>
+<p><img src="http://i.imgur.com/9TsZluP.gif" alt="" /></p>
+<p>One very important thing that you have to consider is that since you're (at least conceptually) dealing with a grid of tiles you have to snap everything to that same grid. In the gif above the tile size is 4 pixels, meaning that all room positions and sizes are multiples of 4. To do this I wrap position and width/height assignments in a function that rounds the number to the tile size:</p>
+<pre><code>function roundm(n, m) return math.floor(((n + m - 1)/m))*m end
+</code></pre>
+<h2 id="separate-rooms"><a class="header" href="#separate-rooms">Separate Rooms</a></h2>
+<p>Now we can move on to the separation part. There's a lot of rooms mashed together in one place and they should not be overlapping somehow. TKdev used the separation steering behavior to do this but I found that it's much easier to just use a physics engine. After you've added all rooms, simply add solid physics bodies to match each room's position and then just run the simulation until all bodies go back to sleep. In the gif I'm running the simulation normally but when you're doing this between levels you can advance the physics simulation faster.</p>
+<p><img src="http://i.imgur.com/Zv2kYmv.gif" alt="" /></p>
+<p>The physics bodies themselves are not tied to the tile grid in any way, but when setting the room's position you wrap it with the <em>roundm</em> call and then you get rooms that are not overlapping with each other and that also respect the tile grid. The gif below shows this in action as the blue outlines are the physics bodies and there's always a slight mismatch between them and the rooms since their position is always being rounded:</p>
+<p><img src="http://i.imgur.com/eyTNcXE.gif" alt="" /></p>
+<p>One issue that might come up is when you want to have rooms that are skewed horizontally or vertically. For instance, consider the game I'm working on:</p>
+<p><img src="https://i.imgur.com/COnbUTF.gif" alt="" /></p>
+<p>Combat is very horizontally oriented and so I probably want to have most rooms being bigger in width than they are in height. The problem with this lies in how the physics engine decides to resolve its collisions whenever long rooms are near each other:</p>
+<p><img src="http://i.imgur.com/VbvngEZ.gif" alt="" /></p>
+<p>As you can see, the dungeon becomes very tall, which is not ideal. To fix this we can spawn rooms initially inside a thin strip instead of on a circle. This ensures that the dungeon itself will have a decent width to height ratio:</p>
+<p><img src="http://i.imgur.com/yMEwhwr.gif" alt="" /></p>
+<p>To spawn randomly inside this strip we can just change the `getRandomPointInCircle` function to spawn points inside an ellipse instead (in the gif above I used <em>ellipse_width = 400</em> and <em>ellipse_height = 20</em>):</p>
+<pre><code>function getRandomPointInEllipse(ellipse_width, ellipse_height)
+  local t = 2*math.pi*math.random()
+  local u = math.random()+math.random()
+  local r = nil
+  if u &gt; 1 then r = 2-u else r = u end
+  return roundm(ellipse_width*r*math.cos(t)/2, tile_size), 
+         roundm(ellipse_height*r*math.sin(t)/2, tile_size)
+end
+</code></pre>
+<h2 id="main-rooms"><a class="header" href="#main-rooms">Main Rooms</a></h2>
+<p>The next step simply determines which rooms are main/hub rooms and which ones aren't. TKdev's approach here is pretty solid: just pick rooms that are above some width/height threshold. For the gif below the threshold I used was <em>1.25*mean</em>, meaning, if <em>width_mean</em> and <em>height_mean</em> are 24 then rooms with width and height bigger than 30 will be selected.</p>
+<p><img src="http://i.imgur.com/yeqXkTe.gif" alt="" /></p>
+<h2 id="delaunay-triangulation--graph"><a class="header" href="#delaunay-triangulation--graph">Delaunay Triangulation + Graph</a></h2>
+<p>Now we take all the midpoints of the selected rooms and feed that into the Delaunay procedure. You either implement this procedure yourself or find someone else who's done it and shared the source. In my case I got lucky and <a href="https://github.com/Yonaba/delaunay">Yonaba already implemented it</a>. As you can see from that interface, it takes in points and spits out triangles:</p>
+<p><img src="http://i.imgur.com/BUeRTaW.gif" alt="" /></p>
+<p>After you have the triangles you can then generate a graph. This procedure should be fairly simple provided you have a graph data structure/library at hand. In case you weren't doing this already, it's useful that your Room objects/structures have unique ids to them so that you can add those ids to the graph instead of having to copy them around.</p>
+<h2 id="minimum-spanning-tree"><a class="header" href="#minimum-spanning-tree">Minimum Spanning Tree</a></h2>
+<p>After this we generate a minimum spanning tree from the graph. Again, either implement this yourself or find someone who's done it in your language of choice.</p>
+<p><img src="http://i.imgur.com/gc77fqU.gif" alt="" /></p>
+<p>The minimum spanning tree will ensure that all main rooms in the dungeon are reachable but also will make it so that they're not all connected as before. This is useful because by default we usually don't want a super connected dungeon but we also don't want unreachable islands. However, we also usually don't want a dungeon that only has one linear path, so what we do now is add a few edges back from the Delaunay graph:</p>
+<p><img src="http://i.imgur.com/Spogz4z.gif" alt="" /></p>
+<p>This will add a few more paths and loops and will make the dungeon more interesting. TKdev arrived at 15% of edges being added back and I found that around 8-10% was a better value. This may vary depending on how connected you want the dungeon to be in the end.</p>
+<h2 id="hallways"><a class="header" href="#hallways">Hallways</a></h2>
+<p>For the final part we want to add hallways to the dungeon. To do this we go through each node in the graph and then for each other node that connects to it we create lines between them. If the nodes are horizontally close enough (their <em>y</em> position is similar) then we create a horizontal line. If the nodes are vertically close enough then we create a vertical line. If the nodes are not close together either horizontally or vertically then we create 2 lines forming an L shape. </p>
+<p>The test that I used for what ~close enough~ means calculates the midpoint between both nodes' positions and checks to see if that midpoint's <em>x or y</em> attributes are inside the node's boundaries. If they are then I create the line from that midpoint's position. If they aren't then I create two lines, both going from the source's midpoint to the target's midpoint but only in one axis.</p>
+<p><img src="http://i.imgur.com/iKR57gS.png" alt="" /></p>
+<p>In the picture above you can see examples of all cases. Nodes 62 and 47 have a horizontal line between them, nodes 60 and 125 have a vertical one and nodes 118 and 119 have an L shape. It's also important to note that those aren't the only lines I'm creating. They are the only ones I'm drawing but I'm also creating 2 additional lines to the side of each one spaced by <em>tile_size</em>, since I want my corridors to be at least 3 tiles wide in either width or height.</p>
+<p>Anyway, after this we check to see which rooms that aren't main/hub rooms that collide with each of the lines. Colliding rooms are then added to whatever structure you're using to hold all this by now and they will serve as the skeleton for the hallways:</p>
+<p><img src="http://i.imgur.com/Y7E7Egn.png" alt="" /></p>
+<p>Depending on the uniformity and size of the rooms that you initially set you'll get different looking dungeons here. If you want your hallways to be more uniform and less weird looking then you should aim for low standard deviation and you should put some checks in place to keep rooms from being too skinny one way or the other.</p>
+<p>For the last step we simply add 1 tile sized grid cells to make up the missing parts. Note that you don't actually need a grid data structure or anything too fancy, you can just go through each line according to the tile size and add grid rounded positions (that will correspond to a 1 tile sized cell) to some list. This is where having 3 (or more) lines happening instead of only 1 matters.</p>
+<p><img src="http://i.imgur.com/bSV1gpV.png" alt="" /></p>
+<p><img src="http://i.imgur.com/t4G5oRK.gif" alt="" /></p>
+<p>And then after this we're done!</p>
+<h2 id="end"><a class="header" href="#end">END</a></h2>
+<p>The data structures I returned from this entire procedure were: a list of rooms (each room is just a structure with a unique id, x/y positions and width/height); the graph, where each node points to a room id and the edges have the distance between rooms in tiles; and then an actual 2D grid, where each cell can be nothing (meaning its empty), can point to a main/hub room, can point to a hallway room or can be hallway cell. With these 3 structures I think it's possible to get any type of data you could want out of the layout and then you can figure out where to place doors, enemies, items, which rooms should have bosses, and so on.</p>
+<p><img src="http://i.imgur.com/GKO8EUG.gif" alt="" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="A Technique for Animating a Unity UI Layout Group.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="A Technique for Animating a Unity UI Layout Group.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

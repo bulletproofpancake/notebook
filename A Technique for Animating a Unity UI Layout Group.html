@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>A Technique for Animating a Unity UI Layout Group - My Notebook</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Articles</li><li class="chapter-item expanded "><a href="Procedural Dungeon Generation Algorithm.html"><strong aria-hidden="true">1.</strong> Procedural Dungeon Generation Algorithm</a></li><li class="chapter-item expanded "><a href="A Technique for Animating a Unity UI Layout Group.html" class="active"><strong aria-hidden="true">2.</strong> A Technique for Animating a Unity UI Layout Group</a></li><li class="chapter-item expanded "><a href="stress-free_gdc.html"><strong aria-hidden="true">3.</strong> Stress-Free Game Development: Powering Up Your Studio With DevOps</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="ABOUT.html">About Me</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">My Notebook</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="a-technique-for-animating-a-unity-ui-layout-group"><a class="header" href="#a-technique-for-animating-a-unity-ui-layout-group"><a href="https://straypixels.net/layoutgroup-animation/">A Technique for Animating a Unity UI Layout Group</a></a></h1>
+<p><a href="https://straypixels.net/assets/layoutgroup-animation/objectives_animation_2.webm">There's supposed to be a video here, but your browser doesn't support the video tag!</a></p>
+<p>Imagine the following scenario: you have a list of objectives you want to show in the game HUD. Sounds simple enough to implement in Unity’s built-in UI system, right? Just throw a <code>HorizontalLayoutGroup</code> on a panel, insert your elements, and the panel will automatically size to fit. Instantiate new children as new objectives come in.</p>
+<p>However, when you add new objectives, it doesn’t look especially nice to have the UI expand immediately. Plus, you want to draw the player’s attention to the objectives list when it is updated. So, you decide to animate the objectives list.</p>
+<p>Using Unity’s built-in UI components, this turns out to be a bit difficult to do. There is no built-in support for animation in the UI system. How, then, do we go about animating this list?</p>
+<p>One way to do it is to simply throw away Unity’s layout engine altogether, and only use their components for display/events. This is a perfectly valid way to go about it, and in fact is necessary if you want more control over how the animation is done. However, one of my main goals was to leverage Unity’s layout engine somehow.</p>
+<p>Another way is to follow <a href="https://answers.unity.com/questions/1156668/is-there-a-way-to-animate-dynamic-layout-group-cha.html">the technique laid out in this answer</a>. In summary, they create a hidden hierarchy for layout, and the “real” UI interpolates to the match the size of the hidden hierarchy over time. This sounds like a reasonable approach, but seems a little clunky to me in terms of setup.</p>
+<p>Where, then, does that leave us?</p>
+<ul>
+<li>We want to insert elements directly into the <code>LayoutGroup</code>, and for those elements to begin at no size.</li>
+<li>But we still want Unity to tell us what size those elements <em>should</em> be, when they’re at full size.</li>
+</ul>
+<p>There are a few tricks I used to pull this off. Most of it is contained within the way I’ve organized the hierarchy:</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/Hierarchy.png" alt="Unity hierarchy. ObjectivesContainer contains Header and SingleObjectiveContainer. SingleObjectiveContainer contains ObjectiveText." /></p>
+<p>The parent, the <code>ObjectivesContainer</code>, has a <code>VerticalLayoutGroup</code>, along with a <code>ContentSizeFitter</code> so that it always snugly fits its children:</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/ObjectivesContainerInspector.png" alt="ObjectivesContainer inspector." /></p>
+<p>In a traditional <code>VerticalLayoutGroup</code> setup, we’d put the row content directly under <code>ObjectivesContainer</code>. However, you might have noticed that <code>ObjectiveText</code> is not in <code>ObjectivesContainer</code>; instead, it’s been placed under <code>SingleObjectiveContainer</code>. Here’s the inspector for <code>SingleObjectiveContainer</code> (on the left) and <code>ObjectiveText</code> (on the right):</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/InspectorsSideBySide.png" alt="Two inspectors side by side." /></p>
+<p>The important thing here is that the SingleObjectiveContainer has a <code>LayoutElement</code> component. This allows us to shrink the row without affecting the size of the content inside of the row, by modifying the <code>preferredWidth</code> and <code>preferredHeight</code> properties.</p>
+<p>You might also note that there is a <code>ContentSizeFitter</code> on the content element, with both “Horizontal Fit” and “Vertical Fit” to “Preferred Size”. We could not do this without the container element, as Unity’s layout system must control the size of its direct children. We’ll discuss what we use this for later.</p>
+<p>One last thing to call your attention to: the anchor of the <code>ObjectiveText</code> is set to the bottom-left. This is done so our text sticks to the bottom-side of the container, so that when we animate, the text appears to drop downwards. (Try playing around with the anchor after the effect is finished and you’ll see what I mean.)</p>
+<p>With this configuration, we can now modify the values on the <code>SingleObjectiveContainer</code>’s <code>LayoutGroup</code> and have the <code>ObjectivesContainer</code> follow:</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/HeightSettingNoMask.gif" alt="Me adjusting the preferred height of the LayoutElement." /></p>
+<p>Obviously, row content showing behind other elements is undesirable. We can solve this by adding an Image component and a Mask component to the container. Make sure to uncheck “Show Mask Graphic”; the <code>Image</code> component is only there to define the mask boundaries, and shouldn’t be drawn.</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/MaskInspector.png" alt="A mask component with an Image component." /></p>
+<p>With the mask, only the portion text that fits within the container is shown:</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/HeightSettingWithMask.gif" alt="Me adjusting the preferred height of the LayoutElement after the mask is applied." /></p>
+<p>We now have all the tools we need to do the animation. For the insertion animation, we’ll animate the container from (0,0) to the size of the size of the inner content’s <code>RectTransform</code>. Since the content’s <code>RectTransform</code> is being controlled by a <code>ContentSizeFitter</code>, that means we’ll animate to the exact size needed to fit the inner content snugly.</p>
+<p>Note that the <code>ContentSizeFitter</code> isn’t special; you could set the width and height of the content in other ways, such as by using an <code>AspectRatioFitter</code>, and this technique will work just as well. The important part is simply that we’re using the inner content’s size as the animation target, so it should be set to something reasonable.</p>
+<p>I’ve done the animation using a <code>Coroutine</code> in code (though I’m sure there’s better ways to do it):</p>
+<pre><code class="language-cs">IEnumerator ShowSelf(float duration)
+{
+    float startHeight = rectTransform.rect.height;
+    float endHeight = text.rectTransform.rect.height;
+    float startWidth = rectTransform.rect.width;
+    float endWidth = text.rectTransform.rect.width;
+
+    float time = 0.0f;
+    while (time &lt; duration)
+    {
+        // Adding easing to the animation makes the animation much more fluid, compared to
+        // a standard linear interpolation; see the repository below for the implementation
+        layoutElement.preferredHeight = Util.EaseInOut(startHeight, endHeight, time, duration);
+        layoutElement.preferredWidth = Util.EaseInOut(startWidth, endWidth, time, duration);
+
+        yield return null;
+        time += Time.deltaTime;
+    }
+
+    layoutElement.preferredHeight = endHeight;
+    layoutElement.preferredWidth = endWidth;
+}
+</code></pre>
+<p>A hiding animation is similar - all you need to do is reverse the <code>start</code> and <code>end</code> parameters.</p>
+<p>After adding code for instantiating some prefabs, the result is what you see here:</p>
+<p><img src="https://straypixels.net/assets/layoutgroup-animation/FinalResult.gif" alt="ObjectivesContainer inspector." /></p>
+<p>Looking at it closely, there’s still room for improvement. The width of the rows appears to animate more quickly than the height, since we’re animating to 0 and not the edge of the container. This turns out to be a bit tricky to solve since the edge of the container could change in the middle of the animation. Still, this is good enough for something like the objectives list described above, since the user’s eyes won’t be focusing on it most of the time.</p>
+<p><a href="https://github.com/Chaosed0/LayoutGroupAnimation">Here is a git repository containing a demonstration Unity project</a>. This is what I used to create the final result gif above. There’s a few things in there I didn’t demonstrate explicitly in this post, such as updates and removals.</p>
+<p>Here is the <a href="https://gridpulselegions.com/">RTS that I made the effect for</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="Procedural Dungeon Generation Algorithm.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="stress-free_gdc.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="Procedural Dungeon Generation Algorithm.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="stress-free_gdc.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
